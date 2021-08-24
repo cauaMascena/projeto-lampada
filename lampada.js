@@ -30,4 +30,4 @@ document.getElementById("desligar")
 .addEventListener("click", desligarLampada)
 
 document.getElementById("lampada")
-.addEventListener("mousemove", quebrarLampada)
+.addEventListener("dblclick", quebrarLampada)
