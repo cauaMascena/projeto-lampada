@@ -1,28 +1,42 @@
 "use strict"
 
-function ligarLampada() {
-    const lampada = document.getElementById("lampada")
+function botoesLigaDesliga (ligarEstado, desligarEstado) {
     const ligar = document.getElementById("ligar")
     const desligar = document.getElementById("desligar")
+    ligar.disabled = ligarEstado
+    desligar.disabled = desligarEstado
+}
 
+function lampadaQuebrada() {
+     return document.getElementById("lampada").src.indexOf("quebrada") !== -1
+}
+
+function ligarLampada() {
+    const lampada = document.getElementById("lampada")
+ 
+
+    if (!lampadaQuebrada()) {
     lampada.src = "img/ligada.jpg"
-    ligar.disabled = true
-    deligar.disabled = false 
+    botoesLigaDesliga(true, false)
+    }
 }
 function desligarLampada() {
-    lampada.src = document.getElementById("lampada")
-    lampada.src = "img/desligada.jpg"
+    const lampada = document.getElementById("lampada")
 
+    if (!lampadaQuebrada()) {
     lampada.src = "img/desligada.jpg"
-    ligar.disabled = false
-    deligar.disabled = true 
+    botoesLigaDesliga(false, true)
+    }
 }
 function quebrarLampada() {
-    lampada.src = document.getElementById("lampada")
+    const lampada = document.getElementById("lampada")
+
     lampada.src = "img/quebrada.jpg"
+    botoesLigaDesliga(true, true)
 }
 
 //  Eventos
+
 document.getElementById("ligar")
 .addEventListener("click", ligarLampada)
 
@@ -31,3 +45,9 @@ document.getElementById("desligar")
 
 document.getElementById("lampada")
 .addEventListener("dblclick", quebrarLampada)
+
+document.getElementById("lampada")
+.addEventListener("mouseover", ligarLampada)
+
+document.getElementById("lampada")
+.addEventListener("mouseleave", desligarLampada)
